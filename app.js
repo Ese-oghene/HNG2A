@@ -27,9 +27,9 @@ db.connect((err) => {
 // Define CRUD routes (see next step)
 
 
-// READ: Fetching all users
-app.get('/api/users', (req, res) => {
-    const sql = 'SELECT * FROM users';
+// READ: Fetching all persons
+app.get('/api/person', (req, res) => {
+    const sql = 'SELECT * FROM person';
     db.query(sql, (err, results) => {
       if (err) {
         console.error('Error retrieving users:', err);
@@ -42,9 +42,9 @@ app.get('/api/users', (req, res) => {
   
 
 // CREATE: Adding a new user
-app.post('/api/users', (req, res) => {
+app.post('/api/person', (req, res) => {
     const { name, email } = req.body;
-    const sql = 'INSERT INTO users (name, email) VALUES (?, ?)';
+    const sql = 'INSERT INTO person (name, email) VALUES (?, ?)';
     db.query(sql, [name, email], (err, result) => {
       if (err) {
         console.error('Error creating user:', err);
@@ -57,9 +57,9 @@ app.post('/api/users', (req, res) => {
   
 
   // READ: Fetching details of a user by name
-app.get('/api/users/:name', (req, res) => {
+app.get('/api/person/:name', (req, res) => {
     const { name } = req.params;
-    const sql = 'SELECT * FROM users WHERE name = ?';
+    const sql = 'SELECT * FROM person WHERE name = ?';
     db.query(sql, [name], (err, results) => {
       if (err) {
         console.error('Error retrieving user:', err);
@@ -77,10 +77,10 @@ app.get('/api/users/:name', (req, res) => {
 
 
   // UPDATE: Modifying details of an existing user by name
-app.put('/api/users/:name', (req, res) => {
+app.put('/api/person/:name', (req, res) => {
     const { name } = req.params;
     const { email } = req.body;
-    const sql = 'UPDATE users SET email = ? WHERE name = ?';
+    const sql = 'UPDATE person SET email = ? WHERE name = ?';
     db.query(sql, [email, name], (err, result) => {
       if (err) {
         console.error('Error updating user:', err);
@@ -98,7 +98,7 @@ app.put('/api/users/:name', (req, res) => {
   
 
 
-  app.delete('/api/users/:name', (req, res) => {
+  app.delete('/api/person/:name', (req, res) => {
     const { name } = req.params;
     const sql = 'DELETE FROM users WHERE name = ?';
     db.query(sql, [name], (err, result) => {
