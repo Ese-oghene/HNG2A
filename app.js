@@ -28,7 +28,7 @@ db.connect((err) => {
 
 
 // READ: Fetching all persons
-app.get('/api/person', (req, res) => {
+app.get('/api', (req, res) => {
     const sql = 'SELECT * FROM person';
     db.query(sql, (err, results) => {
       if (err) {
@@ -42,7 +42,7 @@ app.get('/api/person', (req, res) => {
   
 
 // CREATE: Adding a new user
-app.post('/api/person', (req, res) => {
+app.post('/api', (req, res) => {
     const { name, email } = req.body;
     const sql = 'INSERT INTO person (name, email) VALUES (?, ?)';
     db.query(sql, [name, email], (err, result) => {
@@ -57,7 +57,7 @@ app.post('/api/person', (req, res) => {
   
 
   // READ: Fetching details of a user by name
-app.get('/api/person/:name', (req, res) => {
+app.get('/api/:name', (req, res) => {
     const { name } = req.params;
     const sql = 'SELECT * FROM person WHERE name = ?';
     db.query(sql, [name], (err, results) => {
@@ -77,7 +77,7 @@ app.get('/api/person/:name', (req, res) => {
 
 
   // UPDATE: Modifying details of an existing user by name
-app.put('/api/person/:name', (req, res) => {
+app.put('/api/:name', (req, res) => {
     const { name } = req.params;
     const { email } = req.body;
     const sql = 'UPDATE person SET email = ? WHERE name = ?';
@@ -98,7 +98,7 @@ app.put('/api/person/:name', (req, res) => {
   
 
 
-  app.delete('/api/person/:name', (req, res) => {
+  app.delete('/api/:name', (req, res) => {
     const { name } = req.params;
     const sql = 'DELETE FROM users WHERE name = ?';
     db.query(sql, [name], (err, result) => {
