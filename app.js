@@ -57,10 +57,10 @@ app.post('/api', (req, res) => {
   
 
   // READ: Fetching details of a user by name
-app.get('/api/:name', (req, res) => {
-    const { name } = req.params;
-    const sql = 'SELECT * FROM person WHERE name = ?';
-    db.query(sql, [name], (err, results) => {
+app.get('/api/:user_id', (req, res) => {
+    const { user_id } = req.params;
+    const sql = 'SELECT * FROM person WHERE id = ?';
+    db.query(sql, [user_id], (err, results) => {
       if (err) {
         console.error('Error retrieving user:', err);
         res.status(500).json({ message: 'Error retrieving user' });
@@ -77,11 +77,11 @@ app.get('/api/:name', (req, res) => {
 
 
   // UPDATE: Modifying details of an existing user by name
-app.put('/api/:name', (req, res) => {
-    const { name } = req.params;
+app.put('/api/::user_id', (req, res) => {
+    const { user_id } = req.params;
     const { email } = req.body;
-    const sql = 'UPDATE person SET email = ? WHERE name = ?';
-    db.query(sql, [email, name], (err, result) => {
+    const sql = 'UPDATE person SET email = ? WHERE id = ?';
+    db.query(sql, [email, user_id], (err, result) => {
       if (err) {
         console.error('Error updating user:', err);
         res.status(500).json({ message: 'Error updating user' });
@@ -98,10 +98,10 @@ app.put('/api/:name', (req, res) => {
   
 
 
-  app.delete('/api/:name', (req, res) => {
-    const { name } = req.params;
-    const sql = 'DELETE FROM users WHERE name = ?';
-    db.query(sql, [name], (err, result) => {
+  app.delete('/api/:user_id', (req, res) => {
+    const { user_id } = req.params;
+    const sql = 'DELETE FROM users WHERE id = ?';
+    db.query(sql, [user_id], (err, result) => {
       if (err) {
         console.error('Error deleting user:', err);
         res.status(500).json({ message: 'Error deleting user' });
