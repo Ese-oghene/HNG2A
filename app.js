@@ -77,7 +77,7 @@ app.get('/api/:user_id', (req, res) => {
 
 
   // UPDATE: Modifying details of an existing user by name
-app.put('/api/::user_id', (req, res) => {
+app.put('/api/:user_id', (req, res) => {
     const { user_id } = req.params;
     const { email } = req.body;
     const sql = 'UPDATE person SET email = ? WHERE id = ?';
