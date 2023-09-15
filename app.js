@@ -100,7 +100,7 @@ app.put('/api/::user_id', (req, res) => {
 
   app.delete('/api/:user_id', (req, res) => {
     const { user_id } = req.params;
-    const sql = 'DELETE FROM users WHERE id = ?';
+    const sql = 'DELETE FROM person WHERE id = ?';
     db.query(sql, [user_id], (err, result) => {
       if (err) {
         console.error('Error deleting user:', err);
